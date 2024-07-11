@@ -21,12 +21,12 @@ document.addEventListener('DOMContentLoaded', function() {
 async function cargaMensajes() {
     const response = await fetch('http://localhost:5001/users');
     const users = await response.json();
-    const usersList = document.getElementById('usersList');
-    usersList.innerHTML = '';
+    const listaMensaje = document.getElementById('listaComentarios');
+    listaComentarios.innerHTML = '';
 
     users.forEach(user => {
         const userItem = document.createElement('li');
-        userItem.textContent = `ID: ${user.id} // nombre: ${user.nombre} //  Email: ${user.email}  //  Comentarios: ${user.Comentarios} //  fecLleg: ${user.fecLleg} //  fecLSal: ${user.fecSal}  //  TipHab: ${user.TipHab} //  almuerzo: ${user.almuerzo}`;
+        userItem.textContent = `ID: ${user.id} // nombre: ${user.name} //  Email: ${user.email}  //  Comentarios: ${user.Comentarios} //  fecLleg: ${user.fecLleg} //  fecLSal: ${user.fecSal}  //  TipHab: ${user.TipHab} //  almuerzo: ${user.almuerzo}`;
         const editButton = document.createElement('button');
         editButton.textContent = 'Edit';
         editButton.onclick = () => editaComentario(user.id);
@@ -36,7 +36,7 @@ async function cargaMensajes() {
 
         userItem.appendChild(editButton);
         userItem.appendChild(deleteButton);
-        usersList.appendChild(userItem);
+        listaComentarios.appendChild(userItem);
     });
 }
 
